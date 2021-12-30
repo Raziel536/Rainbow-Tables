@@ -80,16 +80,16 @@ int main() {
     std::ifstream file(fileName);
     assert(file.is_open());
     bool flag = false;
-    int v = 0, b = 1000001, n = b / 2;
+    int a = 0, b = 1000001, c = b / 2;
     std::string middle, result, line;
     while (!flag) 
     {
-        if (n == v) 
+        if (c == a) 
         {
             break;
         }
         file.seekg(std::ios::beg);
-        for (int i = 0; i < n - 1; ++i) 
+        for (int i = 0; i < c - 1; ++i) 
         {
             file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
@@ -99,20 +99,19 @@ int main() {
         if (value.compare(middle) < 0) 
         {
             left = middle;
-            b = n;
+            b = c;
         }
         else if (value.compare(middle) == 0) 
         {
             flag = true;
-            result = line.substr(36, line.find_last_not_of('"') - 1);
         }
         else 
         {
             right = middle;
-            v = n;
+            a = c;
         }
-        std::cout << " " << n << std::endl;
-        n = (b - v) / 2 + v;
+        std::cout << " " << c << std::endl;
+        c = (b - a) / 2 + a;
     }
     if (flag) 
     {
